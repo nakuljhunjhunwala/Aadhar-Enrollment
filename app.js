@@ -1,10 +1,14 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const app = express();
-const userRoute = require('./router/userRoute');
+const authRoute = require('./router/authRoute')
+const aadharRoute = require('./router/aadharRoute')
 
 // Initiate Environmental Variable
 dotenv.config();
+
+// Parse Body
+app.use(express.json())
 
 // Connect To Database
 require('./config/db')
@@ -18,8 +22,11 @@ app.get('/', (req, res) => {
   res.send("This is Homepage...")
 })
 
-// User Routes
-app.use('/user', userRoute);
+// Auth Routes
+app.use("/auth", authRoute)
+
+// Aadhar Routes
+app.use("/aadhar", aadharRoute)
 
 // Initiate Server
 app.listen(port, () => {
