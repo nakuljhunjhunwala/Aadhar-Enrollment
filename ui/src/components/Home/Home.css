@@ -1,0 +1,97 @@
+.background {
+  background: radial-gradient(#ff9900 10%, #cc6600 80%);
+  height: 100%;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  height: 10%;
+  /* background-color: aqua; */
+  backdrop-filter: blur(20px);
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.title {
+  flex: 0.6;
+}
+
+.title h3 {
+  color: #e7e7e7;
+  font-family: "Oswald", sans-serif;
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 1.3;
+}
+
+.menu {
+  display: flex;
+  flex: 0.2;
+  justify-content: right;
+}
+
+.logoutButton {
+  background-color: transparent;
+  border: 0;
+  color: #c5c5c5;
+  cursor: pointer;
+  font-size: medium;
+  float: left;
+  transition: all 0.2s ease-in;
+}
+
+.logoutButton:hover {
+  color: bisque;
+  font-size: large;
+}
+
+.mainBody {
+  height: 90%;
+  padding: 2%;
+  box-sizing: border-box;
+}
+
+.childrenContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.registerButtonContainer {
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  backdrop-filter: blur(15px);
+  border-radius: 100px;
+  background-color: #f7ea383b;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 7px 17px;
+  cursor: pointer;
+  bottom: 50px;
+  right: 70px;
+  color: whitesmoke;
+  transition: all 0.2s ease-in-out;
+}
+
+.registerButtonContainer:hover {
+  height: 54px;
+  width: 54px;
+}
+
+.register {
+  height: 50px;
+  width: 50px;
+  padding: 5px;
+  box-sizing: border-box;
+  position: fixed;
+  border-radius: 100px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  color: whitesmoke;
+  font-size: xx-large;
+  user-select: none;
+}
