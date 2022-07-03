@@ -13,8 +13,10 @@ function LoginPage() {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    if (user?.login) {
-      navigate("/home");
+    if (user?.login && user?.role === "admin") {
+      navigate("/adminList");
+    } else if (user?.login) {
+      navigate("/aadharList");
     }
     if (user.error) {
       addToast(user.error, {

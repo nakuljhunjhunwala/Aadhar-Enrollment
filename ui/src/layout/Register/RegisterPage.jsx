@@ -1,22 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import "./RegisterPage.css";
-import CONSTANT from "../../constant/constant";
-import axios from "axios";
-import Context from "../../Context/Context";
+import { createAadhar } from "../../api/api";
 
 function RegisterPage() {
   const navigate = useNavigate();
   const { addToast } = useToasts();
-  const [user, setUser] = useContext(Context);
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [code, setCode] = useState("");
-  const [type, setType] = useState("admin");
-
-  useEffect(() => {}, [user]);
+  const [phoneNo, setPhoneNo] = useState("");
+  const [password, setPassword] = useState("");
+  const [homeAddress, setHomeAddress] = useState("");
+  const [state, setState] = useState("");
 
   const signUpAction = async () => {
     if (email === "") {
@@ -29,21 +26,20 @@ function RegisterPage() {
           firstName: firstName,
           lastName: lastName,
           email: email,
-          type: type,
-          code: code,
+          phoneNo: Number(phoneNo),
+          password: password,
+          address: homeAddress,
+          state: state,
         };
 
-        const user = await axios.post(
-          `${CONSTANT.BASE_URL}${CONSTANT.AUTH_API.REGISTER}`,
-          payload,
-          { withCredentials: true }
-        );
+        await createAadhar(payload);
         addToast("User Registered Successfully", {
           appearance: "success",
         });
+        navigate("/adminList");
       } catch (error) {
         let message =
-          error?.response?.data?.errors?.body[0]?.message ||
+          error?.response?.data?.error ||
           error?.response?.data?.message ||
           "Error Occured";
         addToast(message, {
@@ -57,7 +53,7 @@ function RegisterPage() {
     <div className="registerPage">
       <div className="registerContainer">
         <div className="registerHeader">
-          <h3>Register</h3>
+          <h3>Create Aadhar</h3>
         </div>
         <div className="registerInput">
           <input
@@ -78,29 +74,42 @@ function RegisterPage() {
           />
           <input
             type="text"
+            placeholder="Phone Number"
+            value={phoneNo}
+            onChange={(event) => {
+              setPhoneNo(event.target.value);
+            }}
+          />
+          <input
+            type="text"
             placeholder="Email"
             value={email}
             onChange={(event) => {
               setEmail(event.target.value.trim());
             }}
           />
-          <select
-            defaultValue="admin"
-            placeholder="Type"
-            onChange={(event) => {
-              setType(event.target.value);
-            }}
-          >
-            <option value="admin">Admin</option>
-            <option value="teacher">Teacher</option>
-            <option value="student">Student</option>
-          </select>
           <input
             type="text"
-            placeholder="Code"
-            value={code}
+            placeholder="Password"
+            value={password}
             onChange={(event) => {
-              setCode(event.target.value);
+              setPassword(event.target.value);
+            }}
+          />
+          <textarea
+            type="text"
+            placeholder="Home Address"
+            value={homeAddress}
+            onChange={(event) => {
+              setHomeAddress(event.target.value.trim());
+            }}
+          />
+          <input
+            type="text"
+            placeholder="State"
+            value={state}
+            onChange={(event) => {
+              setState(event.target.value);
             }}
           />
         </div>
@@ -110,7 +119,7 @@ function RegisterPage() {
               await signUpAction();
             }}
           >
-            Register
+            Create
           </button>
         </div>
       </div>

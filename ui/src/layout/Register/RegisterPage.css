@@ -13,7 +13,7 @@
   font-family: "IBM Plex Sans";
 }
 .registerContainer {
-  height: 500px;
+  height: 600px;
   width: 400px;
   backdrop-filter: blur(5px);
   border-radius: 10px;
@@ -44,7 +44,8 @@
 .registerInput span {
   width: 100%;
 }
-.registerInput input {
+.registerInput input,
+textarea {
   width: 70%;
   height: 40px;
   background-color: transparent;

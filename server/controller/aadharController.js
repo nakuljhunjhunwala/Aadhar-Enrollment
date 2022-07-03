@@ -69,7 +69,7 @@ class AadharController {
         res.status(200).json({
           aadharId: user._id,
           firstName: user?.aadharLink?.firstName,
-          lastName: user?.aadharLink?.lastname,
+          lastName: user?.aadharLink?.lastName,
           phoneNumber: user?.aadharLink?.phoneNumber,
           email: user.email,
           homeAddress: user?.aadharLink?.homeAddress,
@@ -91,7 +91,7 @@ class AadharController {
         return {
           aadharId: aadhar._id,
           firstName: aadhar.firstName,
-          lastName: aadhar.lastname,
+          lastName: aadhar.lastName,
           phoneNumber: aadhar.phoneNumber,
           email: aadhar.email,
           homeAddress: aadhar.homeAddress,
@@ -100,7 +100,7 @@ class AadharController {
       })
 
       res.status(200).json({
-        count: aadhars.length,
+        count: await aadharService.count(),
         result: aadhars
       })
     } catch (error) {
@@ -111,10 +111,9 @@ class AadharController {
   }
 
   async viewAllBasedOnState(req, res) {
-    const { state } = req.params;
-    console.log(state);
+    const { state = "" } = req.params;
     try {
-      let aadhars = await aadharService.find({ state: state });
+      let aadhars = await aadharService.find({ state: new RegExp(String(state).trim(), 'i') });
 
       aadhars = aadhars.map(aadhar => {
         return {
@@ -129,7 +128,7 @@ class AadharController {
       })
 
       res.status(200).json({
-        count: aadhars.length,
+        count: await aadharService.count(),
         result: aadhars
       })
     } catch (error) {

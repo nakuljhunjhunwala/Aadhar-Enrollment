@@ -1,0 +1,43 @@
+table{
+    border-collapse: collapse;
+      letter-spacing: 1px;
+      font-size: 0.8rem;
+      box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+      backdrop-filter: blur(10px);
+      border-radius: 8px;
+      width: 90%;
+      user-select: none;
+}
+
+td,
+th {
+  padding: 10px 20px;
+}
+
+
+thead{
+  border-bottom: 1px rgba(63, 60, 60, 0.616) solid;
+}
+
+tbody{
+    border-bottom: 1px rgba(63, 60, 60, 0.616) solid;
+}
+
+td {
+  text-align: center;
+}
+
+.search{
+  border: 0;
+  width: 50%;
+  height: 30px;
+  padding: 5px;
+  box-sizing: border-box;
+  font-size: large;
+  background: rgba(212, 210, 210, 0.582);
+  border-radius: 4px;
+}
+
+.search:focus{
+  outline: none;
+}

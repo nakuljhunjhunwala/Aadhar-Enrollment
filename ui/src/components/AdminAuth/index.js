@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import Context from "../../Context/Context"
 
 function AdminAuth({ children }) {
-  const [user, setUser] = useContext(Context);
+  const [user,] = useContext(Context);
   const navigate = useNavigate();
   const [hasAccess, setHasAccess] = useState(false);
   useEffect(() => {

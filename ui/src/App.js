@@ -8,13 +8,14 @@ import {
 // import { Redirect } from 'react-router'
 import "./App.css";
 import LoginPage from "./layout/Login/LoginPage";
-import Home from "./layout/Home/Home";
+import AdminList from "./layout/AdminList/AdminList";
 import { ToastProvider } from "react-toast-notifications";
 import AdminAuth from "./components/AdminAuth";
 import Auth from "./components/Auth";
 import RegisterPage from "./layout/Register/RegisterPage";
 import Context from "./Context/Context"
 import { resolveToken } from "./api/api"
+import AadharDetail from "./layout/AadharDetail/AadharDetail";
 
 
 function App() {
@@ -59,10 +60,19 @@ function App() {
               />
               <Route
                 exact
-                path="/home"
+                path="/adminList"
+                element={
+                  <AdminAuth>
+                    <AdminList />
+                  </AdminAuth>
+                }
+              />
+              <Route
+                exact
+                path="/aadharList"
                 element={
                   <Auth>
-                    <Home />
+                    <AadharDetail />
                   </Auth>
                 }
               />
